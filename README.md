@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Author:** Evie ([@evieffvy](https://github.com/evieffvy))
+**Live demo:** [horus-vulnscope.vercel.app](https://horus-vulnscope.vercel.app)
 
 > The all-seeing eye for live vulnerability intelligence.
 
