@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     async start(controller) {
       const enc = new TextEncoder()
       try {
-        for await (const chunk of stream) {
+        for await (const chunk of stream.stream) {
           const text = chunk.text()
           if (text) controller.enqueue(enc.encode(text))
         }
