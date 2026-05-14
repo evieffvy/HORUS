@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getCVESummary } from '@/app/lib/claude'
+import { getCVESummary } from '@/app/lib/ai'
 import { CVEItem } from '@/app/types/cve'
 
 export async function POST(req: NextRequest) {

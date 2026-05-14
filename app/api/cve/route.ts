@@ -8,13 +8,15 @@ export async function GET(req: NextRequest) {
   const maxScore = sp.get('maxScore') ? parseFloat(sp.get('maxScore')!) : null
 
   try {
+    const PAGE_SIZE = 20
+    const page = Number(sp.get('page') ?? 0)
     const result = await fetchNVDCves({
       keyword: sp.get('keyword') || undefined,
       startDate: sp.get('startDate') || undefined,
       endDate: sp.get('endDate') || undefined,
       severity: sp.get('severity') || undefined,
-      resultsPerPage: 50,
-      startIndex: Number(sp.get('page') ?? 0) * 20,
+      resultsPerPage: PAGE_SIZE,
+      startIndex: page * PAGE_SIZE,
       apiKey: process.env.NVD_API_KEY,
     })
 
@@ -28,7 +30,11 @@ export async function GET(req: NextRequest) {
       })
     }
 
-    return NextResponse.json({ cves, total: result.total })
+    const hasScoreFilter = minScore !== null || maxScore !== null
+    return NextResponse.json({
+      cves,
+      total: hasScoreFilter ? cves.length : result.total,
+    })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Unknown error'
     console.error('[CVE API]', msg)

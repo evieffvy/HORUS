@@ -248,7 +248,7 @@ export default function CVEModal({ cve, onClose }: Props) {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
                 </svg>
-                กำลังวิเคราะห์ด้วย Claude AI...
+                กำลังวิเคราะห์ด้วย Groq AI...
               </div>
             ) : (
               <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
