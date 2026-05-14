@@ -4,8 +4,8 @@ import { CVEItem } from '@/app/types/cve'
 
 export async function POST(req: NextRequest) {
   try {
-    const cve: CVEItem = await req.json()
-    const summary = await getCVESummary(cve)
+    const { lang, ...cve }: CVEItem & { lang?: 'en' | 'th' } = await req.json()
+    const summary = await getCVESummary(cve, lang ?? 'th')
     return NextResponse.json({ summary })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Failed to summarize'

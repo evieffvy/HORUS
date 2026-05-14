@@ -145,7 +145,7 @@ export default function CVEModal({ cve, onClose }: Props) {
     fetch('/api/summarize', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(cve),
+      body: JSON.stringify({ ...cve, lang }),
     })
       .then((r) => r.json())
       .then((d) => setSummary(d.summary ?? d.error ?? ''))
